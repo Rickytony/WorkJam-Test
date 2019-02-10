@@ -1,8 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import { StoriesList } from "./components/StoriesList.jsx";
 
 const Main = () => {
-  return <div>Hello World</div>
-}
+  return <StoriesList />;
+};
 
-ReactDOM.render(<Main />, document.getElementById('main'))
+ReactDOM.render(<Main />, document.getElementById("main"));
