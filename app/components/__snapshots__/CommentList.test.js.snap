@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentList renders correctly when there are no comments 1`] = `ShallowWrapper {}`;
