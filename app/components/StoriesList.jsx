@@ -1,5 +1,5 @@
 import React from "react";
-import { client } from "../api/client.js";
+import { getStory, getTopStories } from "../api/client.js";
 import { Story } from "./Story.jsx";
 
 class StoriesList extends React.Component {
@@ -13,8 +13,7 @@ class StoriesList extends React.Component {
   }
 
   componentDidMount() {
-    client
-      .get("/topstories.json")
+    return getTopStories()
       .then(response => {
         this.getStories(response.data.slice(0, 10));
       })
@@ -25,7 +24,7 @@ class StoriesList extends React.Component {
 
   getStories(storyIds) {
     storyIds.forEach(story => {
-      client.get(`/item/${story}.json`).then(response => {
+      return getStory(story).then(response => {
         this.setState({
           stories: [...this.state.stories, response.data]
         });
