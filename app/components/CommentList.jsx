@@ -5,7 +5,7 @@ import { Comment } from "./Comment.jsx";
 const CommentList = ({ comments, handleClick, showComments }) => {
   if (comments.length < 1)
     return (
-      <div className="col-6 my-3">
+      <div className="col-6 mt-2 mb-3">
         <h6>No comments yet.</h6>
       </div>
     );
@@ -14,7 +14,7 @@ const CommentList = ({ comments, handleClick, showComments }) => {
       <button
         type="button"
         onClick={e => handleClick(e)}
-        className="btn btn-primary mt-1"
+        className="btn btn-secondary mt-1"
       >
         Comments ({comments.length})
       </button>

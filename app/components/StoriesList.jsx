@@ -33,10 +33,10 @@ class StoriesList extends React.Component {
   }
 
   render() {
-    if (!this.state.stories) {
+    if (this.state.stories.length < 1) {
       return (
         <div className="container">
-          <h1 className="col">Stories are loading...</h1>
+          <h2 className="col">Stories are loading...</h2>
         </div>
       );
     }

@@ -46,7 +46,9 @@ class Story extends React.Component {
     const { data } = this.props;
     return (
       <div>
-        <h5 className="col">{data.title}</h5>
+        <a href={data.url} target="_blank">
+          <h5 className="col">{data.title}</h5>
+        </a>
         <h6 className="col">by {data.by}</h6>
         <CommentList
           comments={this.state.comments}
