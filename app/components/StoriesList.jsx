@@ -42,7 +42,7 @@ class StoriesList extends React.Component {
     }
 
     return (
-      <div>
+      <div className="container">
         {this.state.stories.map(story => (
           <Story data={story} key={story.id} />
         ))}
