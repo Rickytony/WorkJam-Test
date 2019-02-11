@@ -3,8 +3,8 @@ import { getStory, getTopStories } from "../api/client.js";
 import { Story } from "./Story.jsx";
 
 class StoriesList extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       stories: []
@@ -42,7 +42,7 @@ class StoriesList extends React.Component {
     }
 
     return (
-      <div className="container">
+      <div className="container mt-4">
         {this.state.stories.map(story => (
           <Story data={story} key={story.id} />
         ))}

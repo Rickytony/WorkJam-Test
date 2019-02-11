@@ -8,33 +8,51 @@ class Story extends React.Component {
     super(props);
 
     this.state = {
-      comments: []
+      comments: [],
+      showComments: false
     };
 
     this.getComments = this.getComments.bind(this);
+    this.toggleComments = this.toggleComments.bind(this);
   }
 
   getComments(commentIds) {
     commentIds.forEach(comment => {
-      return getComment(comment).then(response => {
-        this.setState({
-          comments: [...this.state.comments, response.data]
+      return getComment(comment)
+        .then(response => {
+          this.setState({
+            comments: [...this.state.comments, response.data]
+          });
+        })
+        .catch(error => {
+          throw new Error(error);
         });
-      });
     });
   }
 
+  toggleComments(e) {
+    e.preventDefault();
+    this.setState(prevState => ({
+      showComments: !prevState.showComments
+    }));
+  }
+
   componentDidMount() {
-    this.getComments(this.props.data.kids.slice(0, 10));
+    if (!this.props.data.kids) return;
+    this.getComments(this.props.data.kids.slice(0, 20));
   }
 
   render() {
     const { data } = this.props;
     return (
-      <div className="story-container">
+      <div>
         <h5 className="col">{data.title}</h5>
         <h6 className="col">by {data.by}</h6>
-        <CommentList comments={this.state.comments} />
+        <CommentList
+          comments={this.state.comments}
+          showComments={this.state.showComments}
+          handleClick={this.toggleComments}
+        />
       </div>
     );
   }
