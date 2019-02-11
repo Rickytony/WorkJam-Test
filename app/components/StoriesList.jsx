@@ -12,6 +12,20 @@ class StoriesList extends React.Component {
     this.getStories = this.getStories.bind(this);
   }
 
+  getStories(storyIds) {
+    storyIds.forEach(story => {
+      return getStory(story)
+        .then(response => {
+          this.setState({
+            stories: [...this.state.stories, response.data]
+          });
+        })
+        .catch(error => {
+          throw new Error(error);
+        });
+    });
+  }
+
   componentDidMount() {
     return getTopStories()
       .then(response => {
@@ -20,16 +34,6 @@ class StoriesList extends React.Component {
       .catch(error => {
         throw new Error(error);
       });
-  }
-
-  getStories(storyIds) {
-    storyIds.forEach(story => {
-      return getStory(story).then(response => {
-        this.setState({
-          stories: [...this.state.stories, response.data]
-        });
-      });
-    });
   }
 
   render() {
@@ -44,7 +48,7 @@ class StoriesList extends React.Component {
     return (
       <div className="container mt-4">
         {this.state.stories.map(story => (
-          <Story data={story} key={story.id} />
+          <Story story={story} key={story.id} />
         ))}
       </div>
     );

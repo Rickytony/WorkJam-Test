@@ -20,14 +20,14 @@ const CommentList = ({ comments, handleClick, showComments }) => {
       </button>
 
       {showComments &&
-        comments &&
+        comments.length > 1 &&
         comments.map(comment => <Comment comment={comment} key={comment.id} />)}
     </div>
   );
 };
 
 CommentList.propTypes = {
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.array,
   showComments: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired
 };

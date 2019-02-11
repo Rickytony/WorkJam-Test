@@ -21,7 +21,7 @@ class Story extends React.Component {
       return getComment(comment)
         .then(response => {
           this.setState({
-            comments: [...this.state.comments, response.data]
+            comments: [...this.state.comments, response.story]
           });
         })
         .catch(error => {
@@ -38,18 +38,18 @@ class Story extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.data.kids) return;
-    this.getComments(this.props.data.kids.slice(0, 20));
+    if (!this.props.story.kids) return;
+    this.getComments(this.props.story.kids.slice(0, 20));
   }
 
   render() {
-    const { data } = this.props;
+    const { story } = this.props;
     return (
       <div>
-        <a href={data.url} target="_blank">
-          <h5 className="col">{data.title}</h5>
+        <a href={story.url} target="_blank">
+          <h5 className="col">{story.title}</h5>
         </a>
-        <h6 className="col">by {data.by}</h6>
+        <h6 className="col">by {story.by}</h6>
         <CommentList
           comments={this.state.comments}
           showComments={this.state.showComments}
@@ -61,7 +61,7 @@ class Story extends React.Component {
 }
 
 Story.propTypes = {
-  data: PropTypes.shape({
+  story: PropTypes.shape({
     title: PropTypes.string.isRequired,
     by: PropTypes.string.isRequired
   })
