@@ -32,9 +32,9 @@ class Story extends React.Component {
     const { data } = this.props;
     return (
       <div className="story-container">
-        <div className="col">{data.title}</div>
-        <div className="col">by {data.by}</div>
-        <CommentList data={this.state.comments} />
+        <h5 className="col">{data.title}</h5>
+        <h6 className="col">by {data.by}</h6>
+        <CommentList comments={this.state.comments} />
       </div>
     );
   }
